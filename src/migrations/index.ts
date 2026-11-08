@@ -1,5 +1,6 @@
 import * as migration_20261108_090036_initial from './20261108_090036_initial';
 import * as migration_20261108_180000_projects_first from './20261108_180000_projects_first';
+import * as migration_20261108_190000_contact_text from './20261108_190000_contact_text';
 
 export const migrations = [
   {
@@ -11,5 +12,10 @@ export const migrations = [
     up: migration_20261108_180000_projects_first.up,
     down: migration_20261108_180000_projects_first.down,
     name: '20261108_180000_projects_first'
+  },
+  {
+    up: migration_20261108_190000_contact_text.up,
+    down: migration_20261108_190000_contact_text.down,
+    name: '20261108_190000_contact_text'
   },
 ];

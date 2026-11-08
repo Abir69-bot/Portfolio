@@ -573,7 +573,7 @@ export const PROFILE = {
   resumeUrl: '/resume.pdf',
   ctaHeading: 'Let’s build intelligent software together.',
   ctaText:
-    'I’m looking for AI Software Engineer opportunities — building LLM applications, AI agents, computer vision systems and the backends that run them. Reach out about a role, a project or a collaboration.',
+    'I’m looking for opportunities in AI Software Engineering, Computer Vision Research, and Full-Stack Development. I’m passionate about developing intelligent AI-powered applications, exploring Deep Learning and Computer Vision, and building scalable software solutions. Open to full-time roles, research opportunities, innovative projects, and collaborations.',
   seoTitle: 'Faisal Mahmud Abir | AI Software Engineer',
   seoDescription:
     'Explore the portfolio of Faisal Mahmud Abir, an AI Software Engineer building AI-powered applications, LLM agents, computer vision systems, backend APIs, and intelligent automation workflows.',
