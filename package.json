@@ -1,0 +1,49 @@
+{
+  "name": "faisal-abir-portfolio",
+  "version": "2.0.0",
+  "description": "Faisal Mahmud Abir | AI Software Engineer — portfolio powered by Next.js and Payload CMS",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/run.ts",
+    "seed:force": "cross-env NODE_OPTIONS=--no-deprecation SEED_FORCE=1 payload run src/seed/run.ts",
+    "verify:skills": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/verify.ts",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "test:admin": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/e2e-admin.ts"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "3.91.0",
+    "@payloadcms/next": "3.91.0",
+    "@payloadcms/richtext-lexical": "3.91.0",
+    "@payloadcms/ui": "3.91.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.4.7",
+    "graphql": "^16.8.1",
+    "lucide-react": "1.69.0",
+    "next": "16.3.3",
+    "payload": "3.91.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "0.35.4",
+    "simple-icons": "16.36.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.9",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "16.3.3",
+    "prettier": "^3.4.2",
+    "tsx": "4.23.15",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  }
+}
