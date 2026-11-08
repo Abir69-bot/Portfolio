@@ -161,49 +161,46 @@ export const CAPABILITIES = [
     slug: 'full-stack-web-development',
     title: 'Full-Stack Web Development',
     icon: 'lu:AppWindow',
-    description:
-      'Complete websites and web apps, from a responsive frontend to the API, database and deployment — with AI features built in where they help.',
-    technologies: ['React.js', 'TypeScript', 'FastAPI', 'PostgreSQL', 'REST APIs', 'Docker'],
+    description: 'Modern websites, responsive web applications, dashboards, and scalable full-stack solutions.',
+    technologies: ['React.js', 'TypeScript', 'Next.js', 'PostgreSQL', 'REST APIs', 'Docker'],
   },
   {
     slug: 'llm-agentic-ai-systems',
     title: 'LLM & Agentic AI Systems',
     icon: 'lu:Bot',
-    description:
-      'Retrieval-augmented and tool-using LLM systems that ground answers in your own documents and data.',
+    description: 'Intelligent AI applications, RAG pipelines, AI agents, and LLM-powered automation.',
     technologies: ['LangChain', 'LangGraph', 'RAG', 'Tool Calling', 'ChromaDB'],
   },
   {
     slug: 'computer-vision-solutions',
-    title: 'Computer Vision Solutions',
+    title: 'Computer Vision & AI Research',
     icon: 'lu:ScanEye',
     description:
-      'Detection, tracking and classification pipelines that turn images and video into structured, reviewable events.',
-    technologies: ['YOLO', 'ByteTrack', 'OpenCV', 'ViT', 'ResNet'],
+      'Deep learning research, image classification, object detection, object tracking, and vision transformers.',
+    technologies: ['PyTorch', 'OpenCV', 'YOLO', 'ByteTrack', 'ViT', 'ResNet'],
   },
   {
     slug: 'backend-engineering-api-development',
-    title: 'Backend Engineering & API Development',
+    title: 'Backend Engineering & APIs',
     icon: 'lu:Server',
-    description:
-      'REST and WebSocket services that expose models and data to web apps, bots and other systems.',
-    technologies: ['FastAPI', 'Flask', 'REST APIs', 'WebSockets', 'Redis', 'MongoDB'],
+    description: 'Backend services, REST APIs, database integration, and scalable application architectures.',
+    technologies: ['FastAPI', 'Flask', 'PostgreSQL', 'Redis', 'MongoDB'],
   },
   {
     slug: 'ai-automation-workflow-integration',
-    title: 'AI Automation & Workflow Integration',
+    title: 'AI-Powered ERP & SaaS Platforms',
     icon: 'lu:Workflow',
     description:
-      'Workflows that connect AI steps with APIs, notifications and business tools to remove repetitive manual work.',
-    technologies: ['n8n', 'API Integration', 'AI Agent Workflows', 'Workflow Automation'],
+      'Interested in building intelligent business management platforms, CRM systems, workflow automation, and cloud-based SaaS applications.',
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'REST APIs', 'AWS'],
   },
   {
     slug: 'machine-learning-model-optimization',
-    title: 'Machine Learning & Model Optimization',
+    title: 'Machine Learning & Deep Learning',
     icon: 'lu:Gauge',
     description:
-      'Fine-tuning, knowledge distillation and self-supervised pretraining to make models smaller, faster and more accurate.',
-    technologies: ['PyTorch', 'Hugging Face', 'Knowledge Distillation', 'Fine-tuning'],
+      'Model development, fine-tuning, knowledge distillation, self-supervised learning, and performance optimization.',
+    technologies: ['PyTorch', 'Hugging Face', 'Scikit-learn', 'Knowledge Distillation', 'Fine-tuning'],
   },
 ]
 
@@ -521,7 +518,7 @@ export const PROFILE = {
   headline: 'Building Intelligent Software That Solves Real-World Problems.',
   subtitle: 'AI Software Engineer | AI Agents | LLM Applications | Machine Learning | Full-Stack Development',
   heroDescription:
-    'Computer Science and Engineering graduate focused on building intelligent, scalable software applications. Experienced in AI/ML development, computer vision, LLM-powered applications, backend engineering, and AI automation workflows.',
+    'Computer Science and Engineering graduate specializing in AI Software Engineering, Machine Learning, and Computer Vision. Experienced in developing AI-powered applications, deep learning models, LLM-based solutions, and scalable backend systems. Passionate about building intelligent software, full-stack applications, and AI-driven automation solutions that solve real-world problems.',
   location: 'Dhaka, Bangladesh',
   availability: 'Open to AI Software Engineer roles',
   aboutLead:

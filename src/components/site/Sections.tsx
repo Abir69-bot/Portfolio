@@ -145,7 +145,7 @@ export function WhatIBuild({ items }: { items: Capability[] }) {
           index="01"
           eyebrow="Capabilities"
           title="What I Build"
-          subtitle="Full-stack websites and AI-powered software, built end to end — from the interface to the API, data and deployment."
+          subtitle="Building intelligent software — from AI/ML and Computer Vision research to full-stack web applications, AI-powered ERP systems, SaaS platforms, and scalable backend solutions."
         />
         <div className="build-grid">
           {items.map((c, i) => (
