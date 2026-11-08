@@ -7,6 +7,18 @@ type SeedOptions = { force?: boolean }
 type SeedReport = { created: string[]; updated: string[]; skipped: string[] }
 type SeedableCollection = 'skill-categories' | 'capabilities' | 'projects' | 'research'
 
+/** True when data.ts has an item the seeder has never handled, e.g. a project added in a later release. */
+export const hasUnseededItems = (seededKeys: string[]): boolean => {
+  const seeded = new Set(seededKeys)
+  const keys = [
+    ...SKILL_CATEGORIES.map((c) => `skill-categories:${c.slug}`),
+    ...CAPABILITIES.map((c) => `capabilities:${c.slug}`),
+    ...PROJECTS.map((p) => `projects:${p.slug}`),
+    ...RESEARCH.map((r) => `research:${r.slug}`),
+  ]
+  return keys.some((key) => !seeded.has(key))
+}
+
 /**
  * Idempotent, edit-safe seeder.
  *

@@ -374,6 +374,100 @@ export const PROJECTS = [
     integrations: ['Google Drive API', 'Dropbox API', 'OAuth2', 'REST API'],
     challenges: rows(['Keeping file metadata consistent while chunks are spread across different providers.']),
   },
+  {
+    slug: 'washcraft-property-maintenance',
+    title: 'WashCraft Property Maintenance',
+    period: 'Oct 2026 – Nov 2026',
+    category: 'Full-stack · Lead generation',
+    featured: true,
+    tagline: 'A live marketing and lead-generation website with a built-in CMS for a Toronto property-maintenance company.',
+    summary:
+      'A production website for a residential and commercial property-maintenance company serving Toronto and the GTA. Visitors browse services and city pages and send quote requests, while the business manages its content and leads from an embedded Payload admin.',
+    stack: ['Next.js', 'React', 'TypeScript', 'Payload CMS', 'PostgreSQL', 'Neon', 'Tailwind CSS', 'Zod', 'Playwright', 'Vercel'],
+    githubUrl: 'https://github.com/Abir69-bot/WashCraft-Property-Maintenance-',
+    demoUrl: 'https://www.washcraft.ca/',
+    problem:
+      'The business needed to turn visitors into qualified leads across many services and service areas, and could not afford to lose an enquiry when a database or notification service failed.',
+    architecture:
+      'A Next.js App Router application with Payload CMS embedded in the same codebase and Neon serverless Postgres behind it. Public pages are Server Components served statically and revalidated from CMS hooks, so visitors never wait on the database. Site photos and private customer files are kept in separate storage.',
+    components: [
+      { name: 'Page templates', detail: 'Service, category, city and service-in-city pages generated from CMS content, plus blog, FAQ, gallery, careers and commercial sections.' },
+      { name: 'Quote system', detail: 'Quote forms and a multi-step wizard with dedicated flows and a pricing engine, controlled by feature switches in the admin.' },
+      { name: 'Lead pipeline', detail: 'One path for every lead: save, retry, back up, then notify.' },
+      { name: 'Admin', detail: 'Payload admin with a dashboard, lead management, drafts and role-based access.' },
+      { name: 'SEO layer', detail: 'Shared metadata and JSON-LD builders with a generated sitemap.' },
+    ],
+    backend:
+      'Next.js server actions validate each form with a Zod schema shared with the browser, check it for spam, and pass it to a single submitLead pipeline. Production schema changes go through committed migrations.',
+    integrations: ['Twilio SMS', 'Resend email', 'Cloudflare R2', 'Cloudflare Turnstile', 'Google Places', 'Leaflet + OpenStreetMap', 'Google Tag Manager', 'Microsoft Clarity'],
+    dataFlow: rows([
+      'A visitor submits a form, which is validated in the browser and again on the server.',
+      'Turnstile, a honeypot and a per-IP rate limit filter out spam.',
+      'The lead is saved to the database first, with one retry.',
+      'The owner is then notified by SMS and email; a failed notification is logged and the lead is flagged.',
+      'If the database stays unreachable, the full lead is emailed to the owner and a JSON backup is written to R2.',
+    ]),
+    testing:
+      'Vitest unit and integration tests, Playwright end-to-end tests with axe accessibility checks on desktop and mobile, and Lighthouse CI for performance.',
+    deployment: 'Hosted on Vercel at washcraft.ca, with separate Neon branches for production and development.',
+    challenges: rows([
+      'Keeping a CMS-driven site fast by serving public pages without database calls at request time.',
+      'Making sure a lead survives a database outage or a failed notification.',
+    ]),
+    decisions: rows([
+      'Made every third-party service optional, with a fallback, so the site keeps working when a key is missing.',
+      'Excluded sample testimonials, reviews and logos from production, so the site only shows real social proof.',
+      'Loaded analytics only after cookie consent.',
+    ]),
+  },
+  {
+    slug: 'project-hearth',
+    title: 'Project HEARTH',
+    period: 'Nov 2026',
+    category: 'AI Agent · Data Visualization',
+    featured: true,
+    tagline: 'Fire-safety intelligence for crewed space habitats, built with Team Polaris for the NASA Space Apps Challenge 2026.',
+    summary:
+      'HEARTH (Habitat Environment Analysis & Risk Tracking Hub) summarises, ranks and interprets NASA microgravity combustion experiments to give fire-safety insights for the ISS, a lunar base, pressurized rovers and spacesuits. Its AI crewmate, VESTA, is a tool-using agent whose tool results change what the dashboard shows.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'three.js', 'ECharts', 'Zustand', 'Zod', 'Python', 'Vitest', 'Vercel'],
+    githubUrl: 'https://github.com/Abir69-bot/Project-HEARTH',
+    demoUrl: 'https://project-hearth-five.vercel.app',
+    problem:
+      'NASA combustion results are spread across separate experiments, tables and documents, which makes them hard to apply to crew safety. HEARTH finds the most relevant investigations, extracts data for flammability modeling and highlights research for next-generation fire-safety equipment.',
+    architecture:
+      'A Python pipeline turns raw NASA files into processed JSON. A Next.js App Router application then serves data, physics, analysis, safety and search modules through API routes, with a streaming agent panel on every page.',
+    components: [
+      { name: 'Mission overview', detail: 'Mission status, KPI tiles, a 3D habitat relevance map of every test and an investigation ranking with visible score parts.' },
+      { name: 'Test explorer and Compare', detail: 'Filterable tables and charts, source rows for each test, and side-by-side comparison of investigations.' },
+      { name: 'Safety & gaps', detail: 'Six evidence-based rules, an O2 × pressure gap heatmap and the experiments that would fill each gap.' },
+      { name: 'My data lab', detail: 'Enter your own conditions or upload a CSV that stays in the browser, then see a heuristic hazard index and the nearest tests.' },
+      { name: 'Flame simulator', detail: 'Clearly labelled demo replays of real tests, drawn with WebGL. The flame is artwork steered by NASA results, not a combustion model.' },
+      { name: 'VESTA agent', detail: 'Streaming answers with live tool steps, inline charts, source chips and a confidence tag.' },
+    ],
+    aiStack: ['Tool-using AI agent', 'Claude API', 'OpenRouter', 'Groq', 'Gemini', 'MiniSearch retrieval'],
+    backend:
+      'Next.js API routes expose the data and analysis modules, and streaming answers use server-sent events. VESTA has 11 tools with Zod schemas, shared by every model engine.',
+    integrations: ['Anthropic API', 'OpenRouter', 'Groq', 'Google Gemini', 'NASA Physical Sciences Informatics data'],
+    dataFlow: rows([
+      'A Python script ingests raw NASA files from the ACME, CFI and SPICE investigations into one clean table.',
+      'A user asks VESTA a question from any page.',
+      'The agent calls tools to query data, search documents, run physics calculations or build charts.',
+      'A grounding check confirms every number appears in a tool result or the user’s message.',
+      'The answer streams back with sources and a confidence tag: supported, extrapolated or no_data.',
+    ]),
+    testing: 'Over 145 Vitest tests with mocked model providers, Python tests for data ingestion, and an evaluation script for the agent.',
+    deployment: 'Hosted on Vercel. All API keys are optional and stay on the server.',
+    challenges: rows([
+      'Cleaning 889 raw rows into one table with units and sources, leaving 847 test points after 42 flagged duplicates are excluded from the statistics.',
+      'Keeping model answers trustworthy: figures that cannot be verified are flagged and their confidence is lowered.',
+      'Keeping the agent available when free model providers hit limits or fail.',
+    ]),
+    decisions: rows([
+      'Built an engine chain across four model providers, ending in a rule-based offline mode that needs no AI, so a reply always arrives.',
+      'Required every finding to carry a confidence tag and a source.',
+      'Labelled simulated telemetry and heuristic scores clearly, and published the formulas behind them.',
+    ]),
+  },
 ]
 
 export const RESEARCH = [

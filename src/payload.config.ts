@@ -14,7 +14,7 @@ import { SkillCategories } from './collections/SkillCategories'
 import { Users } from './collections/Users'
 import { Profile } from './globals/Profile'
 import { SeedState } from './globals/SeedState'
-import { seed } from './seed/seed'
+import { hasUnseededItems, seed } from './seed/seed'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -42,14 +42,16 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
-  // First boot on an empty database: seed the portfolio content once.
-  // The seeder is idempotent and only ever creates missing items (see src/seed/seed.ts).
+  // First boot on an empty database: seed the portfolio content once. Later boots add only items
+  // that are new in data.ts. The seeder never overwrites edits or restores deleted items (see src/seed/seed.ts).
   onInit: async (payload) => {
     if (process.env.SKIP_AUTO_SEED === '1') return
     try {
       const { totalDocs } = await payload.count({ collection: 'skill-categories' })
       const state = await payload.findGlobal({ slug: 'seed-state', overrideAccess: true })
-      if (totalDocs === 0 && !state?.lastSeededAt) await seed(payload)
+      const seededKeys = Array.isArray(state?.seededKeys) ? (state.seededKeys as string[]) : []
+      const isEmpty = totalDocs === 0 && !state?.lastSeededAt
+      if (isEmpty || (state?.lastSeededAt && hasUnseededItems(seededKeys))) await seed(payload)
     } catch (err) {
       payload.logger.warn({ err, msg: 'Auto-seed skipped' })
     }
